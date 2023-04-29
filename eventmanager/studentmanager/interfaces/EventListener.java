@@ -1,4 +1,4 @@
-package eventmanager.interfaces;
+package eventmanager.studentmanager.interfaces;
 
 import student.model.StudentModel;
 

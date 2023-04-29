@@ -1,7 +1,7 @@
-package eventmanager.listeners;
+package eventmanager.studentmanager.listeners;
 
-import eventmanager.interfaces.EventListener;
 import student.controller.StudentController;
+import eventmanager.studentmanager.interfaces.EventListener;
 import student.model.StudentModel;
 
 public class RemoveStudentEventListener  implements EventListener {

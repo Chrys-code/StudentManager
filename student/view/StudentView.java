@@ -2,7 +2,8 @@ package student.view;
 
 import javax.swing.*;
 
-import eventmanager.EventManager;
+import eventmanager.studentmanager.StudentEventManager;
+import eventmanager.studentsmanager.StudentsEventManager;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,14 +12,16 @@ import java.awt.Insets;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 import student.model.StudentModel;
 import student.view.components.ListView.StudentListView;
 
 public class StudentView extends JFrame {
 
+    public  StudentEventManager studentEvents = new StudentEventManager("addStudent", "updateStudent", "removeStudent");
+    public  StudentsEventManager studentsEvents = new StudentsEventManager("saveStudents");
     private StudentListView listView;
-    public EventManager events;
     private JLabel nameLabel;
     private JTextField nameTextField;
     private JLabel ageLabel;
@@ -40,9 +43,6 @@ public class StudentView extends JFrame {
         setMinimumSize(new Dimension(600, 450));
         setLocationRelativeTo(null);
     
-        // Register pane events
-        this.events = new EventManager("addStudent", "updateStudent", "removeStudent");
-
         // Create components
         nameLabel = new JLabel("Name:");
         nameTextField = new JTextField(20);
@@ -62,7 +62,7 @@ public class StudentView extends JFrame {
                 int age = Integer.parseInt(ageTextField.getText());
                 StudentModel newStudentDetails = new StudentModel(name, age);
                 // do smth with the data
-                events.notify("addStudent", newStudentDetails);
+                studentEvents.notify("addStudent", newStudentDetails);
             }
         });
 
@@ -119,7 +119,7 @@ public class StudentView extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
 
         // OUTPUT LIST
-        listView = new StudentListView(students, events);
+        listView = new StudentListView(students, studentEvents);
         listView.setPreferredSize(new Dimension(400, 300));
         panel.add(listView, gbc);
 
@@ -141,4 +141,22 @@ public class StudentView extends JFrame {
         ageTextField.setText(null);
         this.listView.updateView(students);
     }
+
+    @Override
+    protected void processWindowEvent(WindowEvent e) {
+        if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+            int opt = JOptionPane.showConfirmDialog(null,
+                    "Are you sure to close this window?", "Confirm",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (opt == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            studentsEvents.notify("saveStudents", null);
+        }
+       
+        super.processWindowEvent(e);
+    }
+
 }

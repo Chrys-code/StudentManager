@@ -1,8 +1,14 @@
 package student.controller;
 
-import eventmanager.listeners.AddStudentEventListener;
-import eventmanager.listeners.RemoveStudentEventListener;
-import eventmanager.listeners.UpdateStudentEventListener;
+import java.awt.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+import eventmanager.studentmanager.listeners.AddStudentEventListener;
+import eventmanager.studentmanager.listeners.RemoveStudentEventListener;
+import eventmanager.studentmanager.listeners.UpdateStudentEventListener;
+import eventmanager.studentsmanager.listeners.SaveStudentsEventListener;
 import student.model.StudentModel;
 import student.model.StudentsModel;
 import student.view.StudentView;
@@ -40,26 +46,23 @@ public class StudentController {
         this.updateView();
     }
 
+    public void saveStudents(StudentsModel students) {
+        try (FileOutputStream fos = new FileOutputStream("students.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(model.getStudentList());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void updateView() {
         view.updateView(model.getStudentList());
     }
 
     public void subscribeToAllEvents() {
-        view.events.subscribe("addStudent", new AddStudentEventListener(this));
-        view.events.subscribe("updateStudent", new UpdateStudentEventListener(this));
-        view.events.subscribe("removeStudent", new RemoveStudentEventListener(this));
+        view.studentEvents.subscribe("addStudent", new AddStudentEventListener(this));
+        view.studentEvents.subscribe("updateStudent", new UpdateStudentEventListener(this));
+        view.studentEvents.subscribe("removeStudent", new RemoveStudentEventListener(this));
+        view.studentsEvents.subscribe("saveStudents", new SaveStudentsEventListener(this));
     }
-
-    public void subscribeToAddStudentEvent() {
-        view.events.subscribe("addStudent", new AddStudentEventListener(this));
-    }
-
-    public void subscribeToUpdateStudentEvent() {
-        view.events.subscribe("updateStudent", new UpdateStudentEventListener(this));
-    }
-
-    public void subscribeToRemoveStudentEvent() {
-        view.events.subscribe("removeStudent", new RemoveStudentEventListener(this));
-    }
-
 }

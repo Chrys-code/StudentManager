@@ -7,18 +7,18 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import eventmanager.EventManager;
+import eventmanager.studentmanager.StudentEventManager;
 import student.model.StudentModel;
 
 public class StudentListView extends JScrollPane {
 
     private  JPanel myList;
-    private  EventManager events;
+    private  StudentEventManager events;
     private  List<StudentModel> students;
     private  StudentRow listRow;
     private  JPanel BorderLayoutPanel;
 
-    public StudentListView(List<StudentModel> students, EventManager events) {
+    public StudentListView(List<StudentModel> students, StudentEventManager events) {
         this.students = students;
         this.events = events;
 

@@ -10,17 +10,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import eventmanager.studentmanager.StudentEventManager;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import eventmanager.EventManager;
 import student.model.StudentModel;
 
 public class StudentRow extends JPanel {
     
     public int index;
     private StudentModel student;
-    private EventManager events;
+    private StudentEventManager events;
     private JLabel nameLabel;
     private JLabel ageLabel;
     private JButton editButton;
@@ -29,7 +30,7 @@ public class StudentRow extends JPanel {
     private JTextField nameInput;
     private JTextField ageInput;
 
-    public StudentRow(StudentModel student, EventManager events, int index) {
+    public StudentRow(StudentModel student, StudentEventManager events, int index) {
         this.index = index;
         this.events = events;
         this.student = student;
