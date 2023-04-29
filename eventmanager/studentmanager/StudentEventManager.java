@@ -35,5 +35,4 @@ public class StudentEventManager {
             listener.handleEvent(student);
         }
     }
-
 }

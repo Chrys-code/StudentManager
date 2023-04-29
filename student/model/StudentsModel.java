@@ -9,12 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StudentsModel implements Serializable {
-
+    
     private List<StudentModel> students;
 
     public StudentsModel() {
         this.students = new ArrayList<StudentModel>();
-        
         try {
             this.loadStudents();
         } catch (IOException ex) {
@@ -55,5 +54,4 @@ public class StudentsModel implements Serializable {
     public List<StudentModel> getStudentList() {
         return this.students;
     }
-
 }

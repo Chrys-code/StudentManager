@@ -11,7 +11,7 @@ import eventmanager.studentmanager.StudentEventManager;
 import student.model.StudentModel;
 
 public class StudentListView extends JScrollPane {
-
+    
     private  JPanel myList;
     private  StudentEventManager events;
     private  List<StudentModel> students;

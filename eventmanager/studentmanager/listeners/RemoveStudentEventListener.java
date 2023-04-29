@@ -5,7 +5,7 @@ import eventmanager.studentmanager.interfaces.EventListener;
 import student.model.StudentModel;
 
 public class RemoveStudentEventListener  implements EventListener {
-
+    
     private StudentController controller;
 
     public RemoveStudentEventListener(StudentController controller) {
@@ -16,5 +16,4 @@ public class RemoveStudentEventListener  implements EventListener {
     public void handleEvent(StudentModel student) {
         controller.removeStudent(student);
      }
-
 }

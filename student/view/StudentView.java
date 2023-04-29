@@ -152,11 +152,8 @@ public class StudentView extends JFrame {
             if (opt == JOptionPane.NO_OPTION) {
                 return;
             }
-
             studentsEvents.notify("saveStudents", null);
         }
-       
         super.processWindowEvent(e);
     }
-
 }

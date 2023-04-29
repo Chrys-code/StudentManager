@@ -9,7 +9,7 @@ import eventmanager.studentsmanager.interfaces.EventListener;
 import student.model.StudentsModel;
 
 public class StudentsEventManager {
-
+    
     Map<String, List<EventListener>> listeners = new HashMap<>();
 
     public StudentsEventManager(String... operations) {
@@ -23,7 +23,6 @@ public class StudentsEventManager {
         event.add(listener);
     }
 
-    
     public void unsubscribe(String eventType, EventListener listener) {
         List<EventListener> event = listeners.get(eventType);
         event.remove(listener);
@@ -35,7 +34,6 @@ public class StudentsEventManager {
             listener.handleEvent(students);
         }
     }
-
 }
 
 

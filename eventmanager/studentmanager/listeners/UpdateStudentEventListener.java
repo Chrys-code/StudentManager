@@ -5,7 +5,7 @@ import eventmanager.studentmanager.interfaces.EventListener;
 import student.controller.StudentController;
 
 public class UpdateStudentEventListener implements EventListener {
-
+   
    private StudentController controller;
 
    public UpdateStudentEventListener(StudentController controller) {
@@ -16,5 +16,4 @@ public class UpdateStudentEventListener implements EventListener {
    public void handleEvent(StudentModel student) {
       controller.updateStudent(student.getId(), student.getName(), student.getAge());
    }
-
 }

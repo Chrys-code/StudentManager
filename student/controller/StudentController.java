@@ -1,6 +1,5 @@
 package student.controller;
 
-import java.awt.List;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -14,14 +13,13 @@ import student.model.StudentsModel;
 import student.view.StudentView;
 
 public class StudentController {
-
+    
     private StudentsModel model;
     private StudentView view;
 
     public StudentController(StudentsModel model, StudentView view) {
         this.model = model;
         this.view = view;
-
         this.subscribeToAllEvents();
     }
 

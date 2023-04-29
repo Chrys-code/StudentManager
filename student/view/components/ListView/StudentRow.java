@@ -31,6 +31,7 @@ public class StudentRow extends JPanel {
     private JTextField ageInput;
 
     public StudentRow(StudentModel student, StudentEventManager events, int index) {
+        
         this.index = index;
         this.events = events;
         this.student = student;
